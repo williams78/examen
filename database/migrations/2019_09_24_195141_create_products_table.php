@@ -9,11 +9,11 @@ class CreateProductsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
-        Schema::create('productos', function (Blueprint $table) {
+        Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('detail');
@@ -28,7 +28,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('product');
         
     }
 }

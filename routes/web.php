@@ -21,3 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('password/change', 'Auth\ChangePasswordController@showChangePasswordForm')->name('password.change');
 Route::post('password/change', 'Auth\ChangePasswordController@change')->name('password.change.post');
+
+Route::group(['middleware'=>['auth']], function(){
+	Route::resource('roles','RoleController');
+	Route::resource('users','UserController');
+	Route::resource('products','ProductController');
+	Route::resource('permission','PermisosController');
+});

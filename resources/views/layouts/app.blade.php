@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -48,9 +50,15 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li> --}}
                                 <li class="nav-item">
-                                    <a class="nav-link">{{ __('NameSoftware') }}</a>
+                                    <a class="nav-link">{{ __('VersionSoftware') }}</a>
                             @endif
                         @else
+                             @can('view_permiso')
+                            <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+                            <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+                            <li><a class="nav-link" href="{{ route('permission.index') }}">Manage Permisson</a></li>
+                            @endcan
+                            <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -68,6 +76,7 @@
                                     </form>
                                 </div>
                             </li>
+
                         @endguest
                     </ul>
                 </div>
