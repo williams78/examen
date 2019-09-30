@@ -1,0 +1,68 @@
+.cbtn {
+    display: inline-block;
+    font-weight: 400;
+    color: #ADADAD;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .cbtn:hover {
+  color: #212529;
+  text-decoration: none;
+}
+  
+.table .thead-grayl th {
+  font-family: 'Roboto,sans-serif';
+  font-weight: lighter;
+  color: #000;
+  background-color: #b0bec5;
+  text-align: center;
+}
+
+.table td {
+  font-family: 'Roboto,sans-serif';
+  font-size:0.9rem;
+  text-align: center;
+}
+
+h3, .h3 {
+    font-size: 1.375rem;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.4rem 0.4rem;
+    margin-left: -1px;
+    line-height: .7;
+    color: gray;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+.table-sm th, .table-sm td {
+    padding: 0.1rem;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #b0bec5;
+    border-color: #b0bec5;
+}
+
+.btn-light:hover {
+  color: #212529;
+  background-color:#fff;
+  border-color: #dae0e5;
+}
