@@ -15,10 +15,11 @@ class UserController extends Controller
 
      function __construct()
     {
-         $this->middleware('permission:Listar_Usuarios');
+       /*  $this->middleware('permission:Listar_Usuarios');
          $this->middleware('permission:Agregar_Usuarios', ['only' => ['create','store']]);
          $this->middleware('permission:Editar_Usuarios', ['only' => ['edit','update']]);
          $this->middleware('permission:Eliminar_Usuarios', ['only' => ['destroy']]);
+         */
     }
 
 	public function index(Request $request){

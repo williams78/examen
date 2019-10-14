@@ -44,7 +44,7 @@ class permisosController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+           
         ]);
 
 
