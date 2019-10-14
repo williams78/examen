@@ -52,5 +52,6 @@
   "Back":"Cancelar",
   "Submit":"Guardar",
   "Create New User":"Nuevo Usuario",
-  "Name":"Nombre"
+  "Name":"Nombre",
+  "Sucess":"Usuario creado con èxito"
 }

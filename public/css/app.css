@@ -1671,7 +1671,7 @@ pre code {
 
 .table-hover tbody tr:hover {
   color: #212529;
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(178, 235, 242, 0.35);
 }
 
 .table-primary,
@@ -5038,7 +5038,7 @@ input[type=button].btn-block {
   z-index: 2;
   color: #1d68a7;
   text-decoration: none;
-  background-color: #e9ecef;
+  background-color: #B3E5FC;
   border-color: #dee2e6;
 }
 
