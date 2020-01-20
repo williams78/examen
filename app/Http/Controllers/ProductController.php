@@ -16,17 +16,29 @@ class ProductController extends Controller
     {
          $this->middleware('permission:product-list');
          $this->middleware('permission:product-create', ['only' => ['create','store']]);
-      /*   $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:product-delete', ['only' => ['destroy']]);*/
+         $this->middleware('permission:product_edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(5);
+        $search = $request->get('search'); 
+        $products = Product::latest()
+         ->orwhere('p_nombre','like','%'. $search . '%')
+         ->orwhere('p_modelo','like','%'. $search . '%')
+         ->orwhere('p_presentacion','like','%'. $search . '%')
+         ->orwhere('p_fabricante','like','%'. $search . '%')
+         ->orwhere('p_estado','like','%'. $search . '%')
+         ->orwhere('p_descripcion','like','%'. $search . '%')
+         ->orwhere('p_nombre','like','%'. $search . '%')
+         ->orwhere('p_costo','like','%'. $search . '%')
+         ->orwhere('p_venta','like','%'. $search . '%')
+         ->orwhere('p_stock','like','%'. $search . '%')
+         ->paginate(5);
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -51,9 +63,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+       $this->validate($request,[
+            'p_nombre' => 'required',
+            'p_descripcion' => 'required',
+            'p_presentacion' => 'required',
+            'p_fabricante' => 'required',
+            'p_estado' => 'required',
+            'p_modelo' => 'required',
+            'p_costo' => 'required',
+            'p_venta' => 'required',
+            'p_stock' => 'required',
         ]);
 
 
@@ -61,7 +80,7 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Producto Creado con exíto.');
     }
 
 
@@ -98,9 +117,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $this->validate($request,[
+            'p_nombre' => 'required',
+            'p_descripcion' => 'required',
+            'p_presentacion' => 'required',
+            'p_fabricante' => 'required',
+            'p_estado' => 'required',
+            'p_modelo' => 'required',
+            'p_costo' => 'required',
+            'p_venta' => 'required',
+            'p_stock' => 'required',
         ]);
 
 
@@ -108,7 +134,7 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+                        ->with('success','Producto Actualizado con exito');
     }
 
 
@@ -124,7 +150,7 @@ class ProductController extends Controller
 
 
         return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+                        ->with('success','Producto Creado con exito');
     }
 
 

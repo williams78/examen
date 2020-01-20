@@ -8,11 +8,11 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: white;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -68,7 +68,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                     @else
                         <a href="{{ route('login') }}">{{ __('Login') }}</a>
                     <!-- Solo Web -->
@@ -86,15 +92,13 @@
 
                 <div class="links">
                     @can('view_permiso')
-                        <a href="https://laravel.com/docs">Docs</a>
+                        <a href="{{ route('users.index') }}">Manage Usuarios</a>
+                         <a href="{{ route('products.index') }}">Manage Productos</a>
+                    <a href="{{ route('clientes.index') }}">Manage Clientes</a>
+                    <a href="{{ route('proveedores.index') }}">Manage Proveedores</a>
+                  
                     @endcan    
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                   
                 </div>
             </div>
         </div>

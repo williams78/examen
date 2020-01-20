@@ -19,11 +19,11 @@ class RoleController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:Listar-Roles');
+      /*   $this->middleware('permission:Listar-Roles');
          $this->middleware('permission:Agregar-Roles', ['only' => ['create','store']]);
          $this->middleware('permission:Editar-Roles', ['only' => ['edit','update']]);
          $this->middleware('permission:Eliminar-Roles', ['only' => ['destroy']]); 
-             }
+        */     }
 
 
     /**
@@ -33,7 +33,10 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
+        $search = $request->get('search');
+        $roles = Role::orderBy('id','DESC')
+         ->orwhere('name','like','%'. $search .'%')
+         ->paginate(11);
         return view('roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -70,7 +73,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Role created successfully');
+                        ->with('success','Rol Creado con exito');
     }
     /**
      * Display the specified resource.
@@ -133,7 +136,7 @@ class RoleController extends Controller
 
 
         return redirect()->route('roles.index')
-                        ->with('success','Role updated successfully');
+                        ->with('success','Rol Actualizado con exito');
     }
     /**
      * Remove the specified resource from storage.
@@ -145,6 +148,19 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                        ->with('success','Role deleted successfully');
+                        ->with('success','Rol Borrado con exito');
+    }
+
+    /**
+     * Obtiene permisos por modulo.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getPermisos(Request $request)
+    {
+        $inputm = $request->get($modulo); 
+        $permission = Permission::get($inputm);
+        return view('roles.create',compact('permission'));
     }
 }

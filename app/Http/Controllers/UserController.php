@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use Response;
+use Barryvdh\DomPDF\Facade as PDF;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -15,15 +17,21 @@ class UserController extends Controller
 
      function __construct()
     {
-         $this->middleware('permission:Listar_Usuarios');
+       /*  $this->middleware('permission:Listar_Usuarios');
          $this->middleware('permission:Agregar_Usuarios', ['only' => ['create','store']]);
          $this->middleware('permission:Editar_Usuarios', ['only' => ['edit','update']]);
          $this->middleware('permission:Eliminar_Usuarios', ['only' => ['destroy']]);
+         */
+         $this->middleware('auth');
     }
 
 	public function index(Request $request){
-      
-        $data=User::orderBy('id','DESC')->paginate(5);
+        $search = $request->get('search'); 
+        $data=User::orderBy('id','DESC')
+        ->nombre($search)
+        ->correo($search)
+        ->rol($search)
+        ->paginate(10);
         return view('users.index',compact('data'))->with('i',($request->input('page',1)-1)*5);
 
 	}
@@ -54,7 +62,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully');
+                        ->with('success',__('Sucess'));
 	}
     
 
@@ -87,6 +95,44 @@ class UserController extends Controller
         return view('users.edit',compact('user','roles','userRole'));
     }
 
+     public function editar(Request $request)
+    {
+        $data=$request->input('id');
+
+        return view('users.editar',compact('data'));
+    }
+
+     public function ejemplo(Request $request)
+    {
+       
+if($request->ajax()) {
+       
+        return response()->json(['message' => 'Insertado correctamente']);
+    }else{
+
+
+
+        return view('users.ejemplo');
+        }
+    }
+
+    public function getAjax()
+{
+    $id = $_POST['id'];
+    $test = new TestModel();
+    $result = $test->getData($id);
+
+    foreach($result as $row)
+    {
+        $html =
+              '<tr>
+                 <td>' . $row->name . '</td>' .
+                 '<td>' . $row->address . '</td>' .
+                 '<td>' . $row->age . '</td>' .
+              '</tr>';
+    }
+    return view('users.destroy');
+}
 
     /**
      * Update the specified resource in storage.
@@ -100,7 +146,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
+            'password' => 'required',
+            'confirm-password' => 'required',
             'roles' => 'required'
         ]);
 
@@ -122,7 +169,7 @@ class UserController extends Controller
 
 
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','Usuario Actualizado con Exíto');
     }
 
 
@@ -136,7 +183,7 @@ class UserController extends Controller
     {
         User::find($id)->delete();
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','Usuario Eliminado con Exíto');
     }
 
 }

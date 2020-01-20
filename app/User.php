@@ -40,4 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function scopeNombre($query,$name){
+        if($name)
+            return $query->orWhere('name','LIKE',"%$name%");
+    }
+
+
+    public function scopeCorreo($query,$email){
+        if($email)
+            return $query->orWhere('email','LIKE',"%$email%");
+    }
+
+    public function scopeRol($query,$rol){
+        if($rol)
+            return $query->orWhere('name','LIKE',"%$rol%");
+    }
 }

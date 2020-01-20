@@ -1671,7 +1671,7 @@ pre code {
 
 .table-hover tbody tr:hover {
   color: #212529;
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(178, 235, 242, 0.35);
 }
 
 .table-primary,
@@ -2540,7 +2540,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn:hover {
-  color: #212529;
+  color: #909090;
   text-decoration: none;
 }
 
@@ -3457,16 +3457,16 @@ input[type=button].btn-block {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-  color: #16181b;
+  color: #fff;
   text-decoration: none;
-  background-color: #f8f9fa;
+  background-color: #2B2E7A;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #3490dc;
+  background-color: #2B2E7A;
 }
 
 .dropdown-item.disabled,
@@ -4299,7 +4299,7 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.disabled {
   color: #6c757d;
   background-color: transparent;
-  border-color: transparent;
+  border-color: black;
 }
 
 .nav-tabs .nav-link.active,
@@ -4748,6 +4748,7 @@ input[type=button].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+
 }
 
 .card > hr {
@@ -5038,7 +5039,7 @@ input[type=button].btn-block {
   z-index: 2;
   color: #1d68a7;
   text-decoration: none;
-  background-color: #e9ecef;
+  background-color: #B3E5FC;
   border-color: #dee2e6;
 }
 
@@ -5880,6 +5881,7 @@ a.close.disabled {
 
 .toast {
   max-width: 350px;
+  max-height: 150px; 
   overflow: hidden;
   font-size: 0.875rem;
   background-color: rgba(255, 255, 255, 0.85);

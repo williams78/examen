@@ -16,10 +16,18 @@ class permisosController extends Controller
      */
     public function index(Request $request)
     {
-        $permissions = Permission::orderBy('id','DESC')->paginate(5);
+        $search = $request->get('search'); 
+        $permissions = Permission::orderBy('id','DESC')
+           ->orWhere('name', 'like', '%' . $search . '%')
+           ->orWhere('descripcion', 'like', '%' . $search . '%')
+           ->orWhere('modulo', 'like', '%' . $search . '%')
+           ->paginate(11);; 
+          
+
         return view('permisos.index',compact('permissions'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
+
 
 
     /**
@@ -44,16 +52,18 @@ class permisosController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+            'descripcion' => 'required',
+            'modulo' => 'required',
         ]);
 
-
-        $role = Permission::create(['name' => $request->input('name')]);
+        $input = $request->all();
+        $user = Permission::create($input);
+        /*$role = Permission::create(['name' => $request->input('name')]);*/
         
 
 
         return redirect()->route('permission.index')
-                        ->with('success','Role created successfully');
+                        ->with('success','Permiso Creado con exíto');
     }
     /**
      * Display the specified resource.
@@ -95,18 +105,20 @@ class permisosController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'permission' => 'required',
+            'descripcion' => 'required',
+            'modulo' => 'required',
         ]);
 
-
+        
         $permission = Permission::find($id);
-        $permission->name = $request->input('name');
+        $inputs = $request->all();
+        $permission->update($inputs); 
         $permission->save();
 
 
       
-        return redirect()->route('permisos.index')
-                        ->with('success','Role updated successfully');
+        return redirect()->route('permission.index')
+                        ->with('success','Permiso Actulizado con exíto');
     }
     /**
      * Remove the specified resource from storage.
@@ -116,8 +128,9 @@ class permisosController extends Controller
      */
     public function destroy($id)
     {
-        DB::table("Permission")->where('id',$id)->delete();
-        return redirect()->route('permisos.index')
-                        ->with('success','Role deleted successfully');
+        Permission::find($id)->delete();
+        return redirect()->route('permission.index')
+                        ->with('success','Permiso Eliminado con Exíto');
+        
     }
 }

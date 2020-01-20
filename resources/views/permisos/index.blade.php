@@ -1,54 +1,86 @@
-@extends('layouts.app')
+@extends('layouts.templateList')
+@section('con','container70')
+@section('routeList')
+{{ route('permission.index') }}
+@endsection
+@section('routeAdd') {{ route('permission.create') }} @endsection
+@section('nameList') Permisos Activos @endsection
+@section('nameAdd')  Agregar Permisos @endsection
+@section('menuone')  Manage Usuarios @endsection
+@section('menuonem') {{ route('users.index') }} @endsection
+@section('menutwo')  Manage Roles @endsection
+@section('menutwom') {{ route('roles.index') }} @endsection
+@section('menutres') Manage Permisos @endsection
+@section('menutresm') {{ route('permission.index') }} @endsection
+@section('menusone') Manage Productos @endsection
+@section('menusonem') {{ route('products.index') }} @endsection
+@section('menustwo') Manage Clientes @endsection
+@section('menustwom') {{ route('clientes.index') }} @endsection
+@section('menustres') Manage Proveedores @endsection
+@section('menustresm') {{ route('proveedores.index') }} @endsection
+@section('s3') active @endsection
 
 
-@section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Role Management</h2>
+@section('contenido')
+
+
+@section('mensage')
+ @if ($message = Session::get('success'))
+        <script> 
+          $(document).ready(function(){
+          $('.toast').toast({delay: 6000});
+          $('.toast').toast('show');});
+        </script>
+        <div class="toast" >
+          <div class="toast-body " style="background-color: #82FA58 ; height: 40px;">
+            {{ $message }}
+          </div>
         </div>
-        <div class="pull-right">
-        
-            <a class="btn btn-success" href="{{ route('permission.create') }}"> Create New Role</a>
-        
-        </div>
-    </div>
-</div>
+      @endif
+@endsection
 
 
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
-
-
-<table class="table table-bordered">
+<table class="tbl-header" cellpadding="0" cellspacing="0" border="0" >
+ <thead>
   <tr>
-     <th>No</th>
-     <th>Name</th>
-     <th width="280px">Action</th>
+     <th>Id</th>
+     <th>Nombre</th>
+     <th>Descripción</th>
+     <th>Modulo</th>
+     <th>Eliminar</th>
   </tr>
+ </thead>
+</table>
+
+
+<table class="table-hover " cellpadding="0" cellspacing="0" border="0">
+      <tbody>  
     @foreach ($permissions as $permission)
     <tr>
-        <td>{{ ++$i }}</td>
+        <td>{{ $permission->id }}</td>
         <td>{{ $permission->name }}</td>
+        <td>{{ $permission->descripcion }}</td>
+        <td>{{ $permission->modulo }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('permission.show',$permission->id) }}">Show</a>
-            
-                <a class="btn btn-primary" href="{{ route('permission.edit',$permission->id) }}">Edit</a>
-            
-                {!! Form::open(['method' => 'DELETE','route' => ['permission.destroy', $permission->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
+                    <form action="{{ route('permission.destroy',$permission->id) }}" method="POST">   
+                     <a class="btn btn-lights btn-md fas fa-shield-alt" href="{{ route('permission.edit',$permission->id) }}"></a>
+                 @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-lightd btn-sm waves-effect px-2">
+            <i class="fas fa-folder-minus"></i>
+          </button>
+                    </form>
             
         </td>
     </tr>
     @endforeach
+    @section('paginador') {!! $permissions->links() !!} @endsection
+     
+    </tbody>
 </table>
 
 
-{!! $permissions->render() !!}
+
 
 
 @endsection
