@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.templateList')
 @section('con','container70')
 @section('routeList')
@@ -45,6 +46,38 @@
    <th>Correo</th>
    <th>Roles</th>
    <th width="120px">Acciones</th>
+=======
+@extends('layouts.app')
+
+
+@section('content')
+<div class="container">
+<div class="row">
+
+
+<div class="col-lg-10 logousuarioleft" >
+      <h3><i class="fas fa-users"></i> {{__('Users Management')}}</h3>
+    </div>  
+    <div class="col-lg-2 margin-tb ">
+        @can('Agregar_Usuarios')
+            <a class="cbtn " href="{{ route('users.create') }}"><i class="fas fa-user-plus"></i> {{ __('Create New User') }}</a>
+         @endcan 
+    </div>
+</div>
+
+
+
+
+<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+<table class="table table-sm table-borderled table-hover" >
+  <thead class="thead-grayl">
+ <tr >
+   <th class="borderLeft">No</th>
+   <th width="270px" >Name</th>
+   <th>Email</th>
+   <th>Roles</th>
+   <th width="120px" class="borderRight">Action</th>
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
  </tr>
 
  </thead>
@@ -53,9 +86,15 @@
     <table class="table-hover"  cellpadding="0" cellspacing="0" border="0">
       <tbody>
  @foreach ($data as $key => $user)
+<<<<<<< HEAD
   <tr>
     <td width="60px" class="numero">{{ $user->id }}</td>
     <td width="270px">{{ $user->name }}</td>
+=======
+  <tr style="border-left: 1px #CFD8DC solid">
+    <td>{{ ++$i }}</td>
+    <td>{{ $user->name }}</td>
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
     <td>{{ $user->email }}</td>
     <td>
       @if(!empty($user->getRoleNames()))
@@ -64,7 +103,11 @@
         @endforeach
       @endif
     </td>
+<<<<<<< HEAD
     <td width="120px">
+=======
+    <td style="border-right: 1px #CFD8DC solid">
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
       <form action="{{ route('users.destroy',$user->id) }}" method="POST">
         @can('Editar_Usuarios')
           <a  class="btn btn-lights btn-md waves-effect px-2 fas fa-user-edit" href="{{ route('users.edit',$user->id) }}"></a>
@@ -78,15 +121,40 @@
         @endcan
       </form>
      </td>
+<<<<<<< HEAD
       
      
+=======
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
   </tr>
  @endforeach
+ <tr>
+  <td colspan="5" >
+  
+  </td>
+ </tr>
 
 </tbody>
 </table>
+{!! $data->render() !!}
 
 
+
+
+
+</div>  
+
+
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+
+
+
+</div>  
+
+
+
+<<<<<<< HEAD
 
 
    
@@ -98,6 +166,8 @@
 
 
 
+=======
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
 
 
 @endsection

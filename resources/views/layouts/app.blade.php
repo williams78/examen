@@ -11,8 +11,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+<<<<<<< HEAD
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
     </script>    
+=======
+   
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
 
 
     <!-- Fonts -->
@@ -23,6 +27,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+<<<<<<< HEAD
    <link href="{{ asset('css/customOK.css') }}" rel="stylesheet">
   <script>
 function mostrar(){
@@ -111,6 +116,10 @@ if(array.length > 0)
     });
   </script>
 
+=======
+   
+    
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
 </head>
 <body>
     <div id="app">
@@ -125,7 +134,23 @@ if(array.length > 0)
             @yield('content')
         </main>
     </div>
+<<<<<<< HEAD
      
+=======
+    @if ($message = Session::get('success'))
+ 
+
+
+<nav class="navbar fixed-bottom navbar-light bg-custom">
+  <a class="navbar-brand" href="#">{{ $message }}</a>
+
+
+
+
+
+@endif
+    
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
 </nav>
 </body>
 </html>

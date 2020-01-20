@@ -52,8 +52,12 @@ class permisosController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
+<<<<<<< HEAD
             'descripcion' => 'required',
             'modulo' => 'required',
+=======
+           
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
         ]);
 
         $input = $request->all();

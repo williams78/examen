@@ -22,6 +22,7 @@ class UserController extends Controller
          $this->middleware('permission:Editar_Usuarios', ['only' => ['edit','update']]);
          $this->middleware('permission:Eliminar_Usuarios', ['only' => ['destroy']]);
          */
+<<<<<<< HEAD
          $this->middleware('auth');
     }
 
@@ -32,6 +33,13 @@ class UserController extends Controller
         ->correo($search)
         ->rol($search)
         ->paginate(10);
+=======
+    }
+
+	public function index(Request $request){
+      
+        $data=User::orderBy('id','DESC')->paginate(2);
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
         return view('users.index',compact('data'))->with('i',($request->input('page',1)-1)*5);
 
 	}

@@ -66,6 +66,7 @@
 
 
 
+<<<<<<< HEAD
 
  <div class="  cardcus" style="top:-10px;">
         {!! Form::open(array('route' => 'permission.store','method'=>'POST')) !!}
@@ -113,6 +114,21 @@
               </div>
             </div>
           </div>
+=======
+{!! Form::open(array('route' => 'permission.store','method'=>'POST')) !!}
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Name:</strong>
+            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+           
+        </div>
+    </div>
+>>>>>>> 92b34ddc6d16892957e62b7c682b578e157f1fa7
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn color-awe">Guardar</button>
     </div>
