@@ -1,0 +1,77 @@
+.container60 {
+  width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container70 {
+  width: 70%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nav-tabs60 {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav60 {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.tabs-color {
+    background-color: rgb(255,255,255,0.3); 
+
+}
+
+.tabs-code .nav li a {
+    display: block;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.tabs-code .nav {
+    /* position: relative; */
+    /* overflow-x: auto; */
+    /* white-space: nowrap; */
+    border-radius: .3rem .3rem 0 0;
+}
+
+.tabs-code .nav.tabs-color li a.active {
+    border-color: #ffeb3b;
+}
+
+.tabs-code .nav li a.active {
+    color: #fff;
+    border-bottom: 3px solid;
+}
+
+.dybo{
+	background-image: linear-gradient(to bottom right, #0174DF, #A4A4A4);
+	background-repeat: no-repeat;
+   -webkit-background-size: cover;
+  background-size: cover;
+
+}
+
+.cardcustom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+}
